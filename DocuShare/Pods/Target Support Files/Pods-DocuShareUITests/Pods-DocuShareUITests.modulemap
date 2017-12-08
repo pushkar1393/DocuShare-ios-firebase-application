@@ -1,0 +1,6 @@
+framework module Pods_DocuShareUITests {
+  umbrella header "Pods-DocuShareUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
