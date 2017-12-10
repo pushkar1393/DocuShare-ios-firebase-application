@@ -1,35 +1,26 @@
 //
-//  UserProfileViewController.swift
+//  UserTabBarController.swift
 //  DocuShare
 //
-//  Created by Pushkar Khedekar on 12/6/17.
+//  Created by Pushkar Khedekar on 12/9/17.
 //  Copyright © 2017 Pushkar Khedekar. All rights reserved.
 //
 
 import UIKit
-import Firebase
 
-class UserProfileViewController: UIViewController {
-    
+class UserTabBarController: UITabBarController {
+
     var user : User?
-    
-    @IBOutlet weak var userNameTextField: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
+
         // Do any additional setup after loading the view.
-        let tabCtrllr = self.tabBarController as! UserTabBarController
-        user = tabCtrllr.user
-        
-        userNameTextField.text = user?.firstName
-        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    
     
 
     /*

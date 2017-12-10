@@ -303,13 +303,30 @@
                     <view key="view" contentMode="scaleToFill" id="lDe-h4-Fbk">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bvE-Qo-2jH">
+                                <rect key="frame" x="46" y="114" width="283" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="HsO-E7-byb"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Courier-Bold" family="Courier" pointSize="22"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="bvE-Qo-2jH" firstAttribute="top" secondItem="AIB-93-P6U" secondAttribute="bottom" constant="50" id="8Co-gi-D30"/>
+                            <constraint firstItem="bvE-Qo-2jH" firstAttribute="leading" secondItem="lDe-h4-Fbk" secondAttribute="leadingMargin" constant="30" id="GIO-vc-sda"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="bvE-Qo-2jH" secondAttribute="trailing" constant="30" id="h0T-Cb-dV8"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Profile" id="jv8-Jg-2GR">
                         <barButtonItem key="leftBarButtonItem" title="Sign Out" id="vPk-6l-LoR"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="edit" id="UWF-Bl-9Sg"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="userNameTextField" destination="bvE-Qo-2jH" id="FER-Ak-aY5"/>
                         <segue destination="qEu-8k-87x" kind="show" id="Sc1-Pw-41i"/>
                     </connections>
                 </viewController>
@@ -423,12 +440,13 @@
             </objects>
             <point key="canvasLocation" x="-5286" y="-760"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--User Tab Bar Controller-->
         <scene sceneID="hao-YZ-ytQ">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="JcJ-YV-730" sceneMemberID="viewController">
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="JcJ-YV-730" customClass="UserTabBarController" customModule="DocuShare" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="teO-Xz-qVA">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
@@ -465,7 +483,7 @@
         <scene sceneID="cSn-Lo-zkP">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Uu5-J8-gLw" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="mostRecent" id="Vph-wm-zwo"/>
+                    <tabBarItem key="tabBarItem" systemItem="mostRecent" id="Vph-wm-zwo" userLabel="Shared Docs"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="fGq-7E-mlr">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -484,7 +502,7 @@
         <scene sceneID="tBx-C7-8yf">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Gai-Fi-xAR" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="favorites" id="hbk-iZ-LPe"/>
+                    <tabBarItem key="tabBarItem" systemItem="favorites" id="hbk-iZ-LPe" userLabel="Profile"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="F7D-9b-EL3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>

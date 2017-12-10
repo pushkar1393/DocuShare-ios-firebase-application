@@ -128,7 +128,7 @@ class SignUpViewController: UIViewController {
     //to  setup object for next controller
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
         
-        if let viewItem = segue.destination as? UserProfileViewController {
+        if let viewItem = segue.destination as? UserTabBarController {
             storeUserData()
             viewItem.user = userToSignIn
         }
