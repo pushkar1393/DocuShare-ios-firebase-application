@@ -313,12 +313,24 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cbn-aT-pdu">
+                                <rect key="frame" x="46" y="184" width="283" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="cuh-Wg-4fs"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Courier-Bold" family="Courier" pointSize="22"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="bvE-Qo-2jH" firstAttribute="top" secondItem="AIB-93-P6U" secondAttribute="bottom" constant="50" id="8Co-gi-D30"/>
                             <constraint firstItem="bvE-Qo-2jH" firstAttribute="leading" secondItem="lDe-h4-Fbk" secondAttribute="leadingMargin" constant="30" id="GIO-vc-sda"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Cbn-aT-pdu" secondAttribute="trailing" constant="30" id="IZc-y3-NcO"/>
+                            <constraint firstItem="Cbn-aT-pdu" firstAttribute="leading" secondItem="lDe-h4-Fbk" secondAttribute="leadingMargin" constant="30" id="OIB-oE-iEX"/>
                             <constraint firstAttribute="trailingMargin" secondItem="bvE-Qo-2jH" secondAttribute="trailing" constant="30" id="h0T-Cb-dV8"/>
+                            <constraint firstItem="Cbn-aT-pdu" firstAttribute="top" secondItem="bvE-Qo-2jH" secondAttribute="bottom" constant="20" id="nAu-OX-ZeU"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Profile" id="jv8-Jg-2GR">
@@ -326,6 +338,7 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="edit" id="UWF-Bl-9Sg"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="emailTextField" destination="Cbn-aT-pdu" id="Shp-cy-Bx1"/>
                         <outlet property="userNameTextField" destination="bvE-Qo-2jH" id="FER-Ak-aY5"/>
                         <segue destination="qEu-8k-87x" kind="show" id="Sc1-Pw-41i"/>
                     </connections>
@@ -364,17 +377,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Blt-c8-mC4">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Blt-c8-mC4">
                                 <rect key="frame" x="46" y="224" width="283" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LJ3-tx-LOd">
-                                <rect key="frame" x="46" y="279" width="283" height="30"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2cY-ds-GjL">
                                 <rect key="frame" x="56" y="339" width="263" height="50"/>
@@ -387,7 +394,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <segue destination="JcJ-YV-730" kind="presentation" identifier="toUserProfileFromLogin" id="Hq5-F3-WKp"/>
+                                    <action selector="loginPressed:" destination="dZ0-4M-xD4" eventType="touchUpInside" id="Xa6-U8-JOk"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LOGIN" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aQi-gs-Yph">
@@ -399,24 +406,35 @@
                                 <color key="textColor" red="0.10270819813013077" green="0.073231108486652374" blue="0.33335405588150024" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="z1I-aN-9cI">
+                                <rect key="frame" x="46" y="274" width="283" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="2cY-ds-GjL" secondAttribute="trailing" constant="40" id="4uE-ab-Bpi"/>
-                            <constraint firstItem="LJ3-tx-LOd" firstAttribute="leading" secondItem="9rB-LJ-KUZ" secondAttribute="leadingMargin" constant="30" id="9dW-tY-A7K"/>
+                            <constraint firstItem="z1I-aN-9cI" firstAttribute="leading" secondItem="9rB-LJ-KUZ" secondAttribute="leadingMargin" constant="30" id="9We-G7-AJz"/>
                             <constraint firstItem="aQi-gs-Yph" firstAttribute="leading" secondItem="9rB-LJ-KUZ" secondAttribute="leadingMargin" constant="50" id="B5r-s0-hcY"/>
                             <constraint firstItem="Blt-c8-mC4" firstAttribute="leading" secondItem="9rB-LJ-KUZ" secondAttribute="leadingMargin" constant="30" id="Klj-RV-1on"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="z1I-aN-9cI" secondAttribute="trailing" constant="30" id="LpZ-LT-4wm"/>
                             <constraint firstItem="2cY-ds-GjL" firstAttribute="leading" secondItem="9rB-LJ-KUZ" secondAttribute="leadingMargin" constant="40" id="Pcv-8I-aqK"/>
                             <constraint firstAttribute="trailingMargin" secondItem="aQi-gs-Yph" secondAttribute="trailing" constant="50" id="WSZ-2K-xG7"/>
                             <constraint firstItem="Blt-c8-mC4" firstAttribute="top" secondItem="9gN-kA-0pt" secondAttribute="bottom" constant="160" id="Xym-VM-YAO"/>
-                            <constraint firstItem="2cY-ds-GjL" firstAttribute="top" secondItem="LJ3-tx-LOd" secondAttribute="bottom" constant="30" id="bwa-gw-zv0"/>
                             <constraint firstItem="Blt-c8-mC4" firstAttribute="top" secondItem="aQi-gs-Yph" secondAttribute="bottom" constant="30" id="cfV-FY-YNi"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="LJ3-tx-LOd" secondAttribute="trailing" constant="30" id="lep-cX-yGS"/>
-                            <constraint firstItem="LJ3-tx-LOd" firstAttribute="top" secondItem="Blt-c8-mC4" secondAttribute="bottom" constant="25" id="sRj-di-3Cd"/>
+                            <constraint firstItem="z1I-aN-9cI" firstAttribute="top" secondItem="Blt-c8-mC4" secondAttribute="bottom" constant="20" id="fMR-iV-40d"/>
+                            <constraint firstItem="2cY-ds-GjL" firstAttribute="top" secondItem="z1I-aN-9cI" secondAttribute="bottom" constant="35" id="kRM-I4-n3p"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Blt-c8-mC4" secondAttribute="trailing" constant="30" id="zJM-kI-Qea"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="DocuShare - Login" id="ogL-rc-e01"/>
+                    <connections>
+                        <outlet property="emailTextField" destination="Blt-c8-mC4" id="TcF-fE-GKT"/>
+                        <outlet property="passwordTextField" destination="z1I-aN-9cI" id="FQZ-IS-4re"/>
+                        <segue destination="JcJ-YV-730" kind="presentation" identifier="toUserProfileFromLogin" id="evE-eR-NlT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="buY-6o-7BZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -519,6 +537,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Hq5-F3-WKp"/>
+        <segue reference="evE-eR-NlT"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -11,7 +11,7 @@ import Firebase
 
 class SignUpViewController: UIViewController {
     
-    var userToSignIn : User?
+    var userID : String?
     
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var firstNameTextField: UITextField!
@@ -24,15 +24,13 @@ class SignUpViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("In the sign up")
         genderPicker()
         createToolbar()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+        }
     
     
     // reset fields
@@ -47,11 +45,11 @@ class SignUpViewController: UIViewController {
     }
     
     @IBAction func signUpBtnPressed(_ sender: Any) {
-        addUserAccount()
+        addUserAccountandLogin()
     }
     
     // function to add authenticated user to firebase
-    func addUserAccount(){
+    func addUserAccountandLogin(){
         if checkIsValid()==1 {
         Auth.auth().createUser(withEmail: emailTextField.text!, password: passwordTextField.text!, completion: {
             (user,error) in
@@ -60,6 +58,8 @@ class SignUpViewController: UIViewController {
                 self.createAlert("User not added","Something went wrong with the details!")
             } else {
                 
+                print(user!.uid)
+                self.userID = user!.uid
                 let ref = Database.database().reference(fromURL: "https://docushare-documents-on-the-go.firebaseio.com/")
                 let individual_ref = ref.child("userList").child(user!.uid)
                 individual_ref.updateChildValues(["firstName": self.firstNameTextField.text!,
@@ -68,8 +68,8 @@ class SignUpViewController: UIViewController {
                                                   "dateOfBirth": self.dateOfBirthTextField.text!,
                                                   "email": self.emailTextField.text!,
                                                   "userName": self.usernameTextField.text!])
-                            
-                self.performSegue(withIdentifier: "toUserProfileFromSignUp", sender: self)
+                
+                self.loginUser();
             }
         })
         } else if checkIsValid() == 2 {
@@ -77,7 +77,21 @@ class SignUpViewController: UIViewController {
         }
     }
     
-    
+    func loginUser() {
+        Auth.auth().signIn(withEmail: self.emailTextField.text!, password: self.passwordTextField.text!) {
+            (user,error) in
+            if user != nil {
+                let defaults = UserDefaults.standard
+                defaults.set(true, forKey: "isUserLoggedin")
+                defaults.synchronize()
+                self.userID = user?.uid
+                self.performSegue(withIdentifier: "toUserProfileFromSignUp", sender: self)
+                
+            } else {
+                self.createAlert("Invalid Credentials", "Please enter valid credentials")
+            }
+        }
+    }
     
     // function to perform field validations
     func checkIsValid() -> Int {
@@ -120,28 +134,22 @@ class SignUpViewController: UIViewController {
         genderTextField.inputAccessoryView = toolBar
     }
     
+    
     // dismiss keyboard on lost focus
     func dismissKeyboard() {
         view.endEditing(true)
     }
     
+    
     //to  setup object for next controller
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
-        
-        if let viewItem = segue.destination as? UserTabBarController {
-            storeUserData()
-            viewItem.user = userToSignIn
+
+        if let viewUser = segue.destination as? UserTabBarController {
+            viewUser.userID = userID
         }
         
     }
     
-    
-    func storeUserData(){
-        var userProfile = UserProfile(emailTextField.text!, usernameTextField.text!, passwordTextField.text!)
-        var user = User(firstNameTextField.text!, lastNameTextField.text!, dateOfBirthTextField.text!, genderTextField.text!)
-        user.addUserProfile(userProfile)
-        userToSignIn = user
-    }
 }
 
 

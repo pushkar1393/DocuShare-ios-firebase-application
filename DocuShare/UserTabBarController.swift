@@ -11,6 +11,8 @@ import UIKit
 class UserTabBarController: UITabBarController {
 
     var user : User?
+    var userID : String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

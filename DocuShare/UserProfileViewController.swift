@@ -12,16 +12,22 @@ import Firebase
 class UserProfileViewController: UIViewController {
     
     var user : User?
+    var userID : String?
     
+    @IBOutlet weak var emailTextField: UILabel!
     @IBOutlet weak var userNameTextField: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        
         let tabCtrllr = self.tabBarController as! UserTabBarController
         user = tabCtrllr.user
+        userID = tabCtrllr.userID
         
         userNameTextField.text = user?.firstName
-        
+        emailTextField.text = userID
     }
 
     override func didReceiveMemoryWarning() {
