@@ -11,11 +11,12 @@ import Firebase
 
 class UserProfileViewController: UIViewController {
     
-    var user : User? = nil
+    var user : User?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        //print(user!.firstName)
     }
 
     override func didReceiveMemoryWarning() {

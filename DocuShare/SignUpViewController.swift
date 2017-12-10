@@ -24,6 +24,7 @@ class SignUpViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("In the sign up")
         genderPicker()
         createToolbar()
     }
@@ -67,7 +68,7 @@ class SignUpViewController: UIViewController {
                                                   "dateOfBirth": self.dateOfBirthTextField.text!,
                                                   "email": self.emailTextField.text!,
                                                   "userName": self.usernameTextField.text!])
-                
+                            
                 self.performSegue(withIdentifier: "toUserProfileFromSignUp", sender: self)
             }
         })
@@ -125,11 +126,13 @@ class SignUpViewController: UIViewController {
     }
     
     //to  setup object for next controller
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?){
+        
         if let viewItem = segue.destination as? UserProfileViewController {
             storeUserData()
             viewItem.user = userToSignIn
         }
+        
     }
     
     

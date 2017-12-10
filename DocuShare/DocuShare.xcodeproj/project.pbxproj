@@ -9,9 +9,6 @@
 /* Begin PBXBuildFile section */
 		80E3AD310A93563E7A8757E7 /* Pods_DocuShareUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 686490FC44E68824B0BBA745 /* Pods_DocuShareUITests.framework */; };
 		833F0D522BD7B47D07B0C44D /* Pods_DocuShare.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EB7B0511EFB5A280D92D2F3 /* Pods_DocuShare.framework */; };
-		A20FB4001FD697DE0054651D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A20FB3FF1FD697DE0054651D /* GoogleService-Info.plist */; };
-		A20FB4011FD697DE0054651D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A20FB3FF1FD697DE0054651D /* GoogleService-Info.plist */; };
-		A20FB4021FD697DE0054651D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A20FB3FF1FD697DE0054651D /* GoogleService-Info.plist */; };
 		A22C82A21FD68E480097300F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22C82A11FD68E480097300F /* AppDelegate.swift */; };
 		A22C82A71FD68E480097300F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A22C82A51FD68E480097300F /* Main.storyboard */; };
 		A22C82AA1FD68E480097300F /* DocuShare.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A22C82A81FD68E480097300F /* DocuShare.xcdatamodeld */; };
@@ -26,7 +23,12 @@
 		A247E50B1FD7273E00AC9C14 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A247E50A1FD7273E00AC9C14 /* HomeViewController.swift */; };
 		A247E50D1FD7492600AC9C14 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A247E50C1FD7492600AC9C14 /* LoginViewController.swift */; };
 		A247E50F1FD7493300AC9C14 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A247E50E1FD7493300AC9C14 /* SignUpViewController.swift */; };
+		A24970991FDCAE7600B32C8B /* MyDocsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24970981FDCAE7600B32C8B /* MyDocsTableViewController.swift */; };
+		A249709B1FDCAE9700B32C8B /* SharedDocsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A249709A1FDCAE9700B32C8B /* SharedDocsTableViewController.swift */; };
 		A25FA89F1FD6F50B00A748EC /* DataPersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25FA89E1FD6F50B00A748EC /* DataPersistenceManager.swift */; };
+		A28AB0EF1FDB565B00134605 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A28AB0EE1FDB565B00134605 /* GoogleService-Info.plist */; };
+		A28AB0F01FDB565B00134605 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A28AB0EE1FDB565B00134605 /* GoogleService-Info.plist */; };
+		A28AB0F11FDB565B00134605 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A28AB0EE1FDB565B00134605 /* GoogleService-Info.plist */; };
 		A2A1FE7F1FD8AF760064226C /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A1FE7E1FD8AF760064226C /* UserProfileViewController.swift */; };
 		B51A392D68D5072EDECA7B3E /* Pods_DocuShareTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43D00E873362CB543C6B9CE7 /* Pods_DocuShareTests.framework */; };
 /* End PBXBuildFile section */
@@ -55,7 +57,6 @@
 		6C548F65E7255A0E05D5673E /* Pods-DocuShareTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DocuShareTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-DocuShareTests/Pods-DocuShareTests.release.xcconfig"; sourceTree = "<group>"; };
 		72491F9F80C03E8A64A6CABF /* Pods-DocuShareUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DocuShareUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-DocuShareUITests/Pods-DocuShareUITests.release.xcconfig"; sourceTree = "<group>"; };
 		72D4B90F3EC136B0A0051EA8 /* Pods-DocuShareUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DocuShareUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DocuShareUITests/Pods-DocuShareUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		A20FB3FF1FD697DE0054651D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A22C829E1FD68E480097300F /* DocuShare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DocuShare.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A22C82A11FD68E480097300F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A22C82A61FD68E480097300F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -76,7 +77,10 @@
 		A247E50A1FD7273E00AC9C14 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		A247E50C1FD7492600AC9C14 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		A247E50E1FD7493300AC9C14 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		A24970981FDCAE7600B32C8B /* MyDocsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDocsTableViewController.swift; sourceTree = "<group>"; };
+		A249709A1FDCAE9700B32C8B /* SharedDocsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedDocsTableViewController.swift; sourceTree = "<group>"; };
 		A25FA89E1FD6F50B00A748EC /* DataPersistenceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataPersistenceManager.swift; sourceTree = "<group>"; };
+		A28AB0EE1FDB565B00134605 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A2A1FE7E1FD8AF760064226C /* UserProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		B25839E7CD3C5B0770155798 /* Pods-DocuShare.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DocuShare.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DocuShare/Pods-DocuShare.debug.xcconfig"; sourceTree = "<group>"; };
 		BDFFBD6A54096B7DA930355F /* Pods-DocuShareTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DocuShareTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DocuShareTests/Pods-DocuShareTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -144,7 +148,7 @@
 				A22C82AB1FD68E480097300F /* Assets.xcassets */,
 				A22C82AD1FD68E480097300F /* LaunchScreen.storyboard */,
 				A22C82B01FD68E480097300F /* Info.plist */,
-				A20FB3FF1FD697DE0054651D /* GoogleService-Info.plist */,
+				A28AB0EE1FDB565B00134605 /* GoogleService-Info.plist */,
 				A22C82A81FD68E480097300F /* DocuShare.xcdatamodeld */,
 			);
 			path = DocuShare;
@@ -186,6 +190,8 @@
 				A247E50C1FD7492600AC9C14 /* LoginViewController.swift */,
 				A247E50E1FD7493300AC9C14 /* SignUpViewController.swift */,
 				A2A1FE7E1FD8AF760064226C /* UserProfileViewController.swift */,
+				A24970981FDCAE7600B32C8B /* MyDocsTableViewController.swift */,
+				A249709A1FDCAE9700B32C8B /* SharedDocsTableViewController.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -338,7 +344,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A22C82AF1FD68E480097300F /* LaunchScreen.storyboard in Resources */,
-				A20FB4001FD697DE0054651D /* GoogleService-Info.plist in Resources */,
+				A28AB0EF1FDB565B00134605 /* GoogleService-Info.plist in Resources */,
 				A22C82AC1FD68E480097300F /* Assets.xcassets in Resources */,
 				A22C82A71FD68E480097300F /* Main.storyboard in Resources */,
 			);
@@ -348,7 +354,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A20FB4011FD697DE0054651D /* GoogleService-Info.plist in Resources */,
+				A28AB0F01FDB565B00134605 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -356,7 +362,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A20FB4021FD697DE0054651D /* GoogleService-Info.plist in Resources */,
+				A28AB0F11FDB565B00134605 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -537,8 +543,10 @@
 				A2A1FE7F1FD8AF760064226C /* UserProfileViewController.swift in Sources */,
 				A22C82D41FD68E970097300F /* User.swift in Sources */,
 				A25FA89F1FD6F50B00A748EC /* DataPersistenceManager.swift in Sources */,
+				A24970991FDCAE7600B32C8B /* MyDocsTableViewController.swift in Sources */,
 				A22C82D81FD68EC00097300F /* Document.swift in Sources */,
 				A22C82D61FD68EA70097300F /* UserProfile.swift in Sources */,
+				A249709B1FDCAE9700B32C8B /* SharedDocsTableViewController.swift in Sources */,
 				A247E50B1FD7273E00AC9C14 /* HomeViewController.swift in Sources */,
 				A22C82AA1FD68E480097300F /* DocuShare.xcdatamodeld in Sources */,
 				A22C82A21FD68E480097300F /* AppDelegate.swift in Sources */,
