@@ -67,7 +67,8 @@ class SignUpViewController: UIViewController {
                                                   "sex": self.genderTextField.text!,
                                                   "dateOfBirth": self.dateOfBirthTextField.text!,
                                                   "email": self.emailTextField.text!,
-                                                  "userName": self.usernameTextField.text!])
+                                                  "userName": self.usernameTextField.text!,
+                                                  "userProfilePictureURL" : ""])
                 
                 self.loginUser();
             }

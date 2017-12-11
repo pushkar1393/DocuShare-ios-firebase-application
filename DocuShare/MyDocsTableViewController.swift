@@ -7,11 +7,24 @@
 //
 
 import UIKit
+import Firebase
 
 class MyDocsTableViewController: UITableViewController {
 
+    var user : User?
+    var userID : String?
+    
+    @IBAction func addDocumentPressed(_ sender: Any) {
+        performSegue(withIdentifier: "toAddDocument", sender: self)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        let tabCtrllr = self.tabBarController as! UserTabBarController
+        user = tabCtrllr.user
+        userID = tabCtrllr.userID
+        
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -26,6 +39,17 @@ class MyDocsTableViewController: UITableViewController {
     }
 
     // MARK: - Table view data source
+    
+    @IBAction func signOutPressed(_ sender: Any) {
+       
+        do {
+            try Auth.auth().signOut()
+        } catch let logError {
+            print(logError)
+        }
+        
+        performSegue(withIdentifier: "toSignOut", sender: self)
+    }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
@@ -82,14 +106,14 @@ class MyDocsTableViewController: UITableViewController {
     }
     */
 
-    /*
-    // MARK: - Navigation
+  
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+ override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    
+    let addDocCtrl = AddDocumentViewController()
+    addDocCtrl.user = user
+    addDocCtrl.userID = userID
     }
-    */
+ 
 
 }

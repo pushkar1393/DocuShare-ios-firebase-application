@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class UserTabBarController: UITabBarController {
 
@@ -15,7 +16,7 @@ class UserTabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        fetchUser()
         // Do any additional setup after loading the view.
     }
 
@@ -24,6 +25,16 @@ class UserTabBarController: UITabBarController {
         // Dispose of any resources that can be recreated.
     }
     
+    func fetchUser() {
+        Database.database().reference(fromURL: "https://docushare-documents-on-the-go.firebaseio.com/").child("userList").child(userID!).observeSingleEvent(of: .value, with: {
+            (snapshot) in
+            if let dictionary = snapshot.value as? [String : AnyObject] {
+                self.user = User()
+                self.user!.setValuesForKeys(dictionary)
+                
+            }
+        }, withCancel: nil)
+    }
 
     /*
     // MARK: - Navigation

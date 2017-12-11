@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class SharedDocsTableViewController: UITableViewController {
 
@@ -37,6 +38,15 @@ class SharedDocsTableViewController: UITableViewController {
         return 0
     }
 
+    @IBAction func signOutPressed(_ sender: Any) {
+        do {
+            try Auth.auth().signOut()
+        } catch let logError {
+            print(logError)
+        }
+        
+        performSegue(withIdentifier: "toSignOut", sender: self)
+    }
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)

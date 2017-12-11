@@ -17,7 +17,6 @@
 		A22C82BA1FD68E480097300F /* DocuShareTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22C82B91FD68E480097300F /* DocuShareTests.swift */; };
 		A22C82C51FD68E480097300F /* DocuShareUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22C82C41FD68E480097300F /* DocuShareUITests.swift */; };
 		A22C82D41FD68E970097300F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22C82D31FD68E970097300F /* User.swift */; };
-		A22C82D61FD68EA70097300F /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22C82D51FD68EA70097300F /* UserProfile.swift */; };
 		A22C82D81FD68EC00097300F /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22C82D71FD68EC00097300F /* Document.swift */; };
 		A22C82DA1FD68ED50097300F /* DocumentStoreList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22C82D91FD68ED50097300F /* DocumentStoreList.swift */; };
 		A247E50B1FD7273E00AC9C14 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A247E50A1FD7273E00AC9C14 /* HomeViewController.swift */; };
@@ -31,6 +30,7 @@
 		A28AB0F01FDB565B00134605 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A28AB0EE1FDB565B00134605 /* GoogleService-Info.plist */; };
 		A28AB0F11FDB565B00134605 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A28AB0EE1FDB565B00134605 /* GoogleService-Info.plist */; };
 		A2A1FE7F1FD8AF760064226C /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A1FE7E1FD8AF760064226C /* UserProfileViewController.swift */; };
+		A2EBE8F41FDDFBDD006FF02C /* AddDocumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2EBE8F31FDDFBDD006FF02C /* AddDocumentViewController.swift */; };
 		B51A392D68D5072EDECA7B3E /* Pods_DocuShareTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43D00E873362CB543C6B9CE7 /* Pods_DocuShareTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -72,7 +72,6 @@
 		A22C82C41FD68E480097300F /* DocuShareUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocuShareUITests.swift; sourceTree = "<group>"; };
 		A22C82C61FD68E490097300F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A22C82D31FD68E970097300F /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		A22C82D51FD68EA70097300F /* UserProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
 		A22C82D71FD68EC00097300F /* Document.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
 		A22C82D91FD68ED50097300F /* DocumentStoreList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentStoreList.swift; sourceTree = "<group>"; };
 		A247E50A1FD7273E00AC9C14 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -84,6 +83,7 @@
 		A25FA89E1FD6F50B00A748EC /* DataPersistenceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataPersistenceManager.swift; sourceTree = "<group>"; };
 		A28AB0EE1FDB565B00134605 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A2A1FE7E1FD8AF760064226C /* UserProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
+		A2EBE8F31FDDFBDD006FF02C /* AddDocumentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddDocumentViewController.swift; sourceTree = "<group>"; };
 		B25839E7CD3C5B0770155798 /* Pods-DocuShare.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DocuShare.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DocuShare/Pods-DocuShare.debug.xcconfig"; sourceTree = "<group>"; };
 		BDFFBD6A54096B7DA930355F /* Pods-DocuShareTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DocuShareTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DocuShareTests/Pods-DocuShareTests.debug.xcconfig"; sourceTree = "<group>"; };
 		FA467120C2AF88F88898116F /* Pods-DocuShare.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DocuShare.release.xcconfig"; path = "Pods/Target Support Files/Pods-DocuShare/Pods-DocuShare.release.xcconfig"; sourceTree = "<group>"; };
@@ -178,7 +178,6 @@
 			isa = PBXGroup;
 			children = (
 				A22C82D31FD68E970097300F /* User.swift */,
-				A22C82D51FD68EA70097300F /* UserProfile.swift */,
 				A22C82D71FD68EC00097300F /* Document.swift */,
 				A22C82D91FD68ED50097300F /* DocumentStoreList.swift */,
 			);
@@ -195,6 +194,7 @@
 				A24970981FDCAE7600B32C8B /* MyDocsTableViewController.swift */,
 				A249709A1FDCAE9700B32C8B /* SharedDocsTableViewController.swift */,
 				A249709E1FDCCC9300B32C8B /* UserTabBarController.swift */,
+				A2EBE8F31FDDFBDD006FF02C /* AddDocumentViewController.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -549,11 +549,11 @@
 				A25FA89F1FD6F50B00A748EC /* DataPersistenceManager.swift in Sources */,
 				A24970991FDCAE7600B32C8B /* MyDocsTableViewController.swift in Sources */,
 				A22C82D81FD68EC00097300F /* Document.swift in Sources */,
-				A22C82D61FD68EA70097300F /* UserProfile.swift in Sources */,
 				A249709B1FDCAE9700B32C8B /* SharedDocsTableViewController.swift in Sources */,
 				A247E50B1FD7273E00AC9C14 /* HomeViewController.swift in Sources */,
 				A22C82AA1FD68E480097300F /* DocuShare.xcdatamodeld in Sources */,
 				A22C82A21FD68E480097300F /* AppDelegate.swift in Sources */,
+				A2EBE8F41FDDFBDD006FF02C /* AddDocumentViewController.swift in Sources */,
 				A247E50D1FD7492600AC9C14 /* LoginViewController.swift in Sources */,
 				A22C82DA1FD68ED50097300F /* DocumentStoreList.swift in Sources */,
 			);
