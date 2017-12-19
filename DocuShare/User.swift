@@ -42,9 +42,9 @@ class User : NSObject{
         var returnURL = ""
         
         let ref_root = Storage.storage().reference(forURL: "gs://docushare-documents-on-the-go.appspot.com/")
-        let profile_picture_store = ref_root.child("profile_pic_store").child(uid + "_profile_pic.png")
+        let profile_picture_store = ref_root.child("profile_pic_store").child(uid + "_profile_pic.jpg")
         
-        if let upload_Image = UIImagePNGRepresentation(userProfilePicture.image!){
+        if let upload_Image = UIImageJPEGRepresentation(userProfilePicture.image!, 0.4){
             
             profile_picture_store.putData(upload_Image, metadata: nil, completion: {
                 (metadata,error) in

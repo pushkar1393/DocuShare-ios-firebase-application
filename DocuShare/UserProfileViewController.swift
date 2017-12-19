@@ -11,6 +11,8 @@ import Firebase
 
 class UserProfileViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate{
     
+    @IBOutlet weak var date: UILabel!
+    @IBOutlet weak var name: UILabel!
     var user : User?
     var userID : String?
     var userImage : UIImage?
@@ -18,22 +20,40 @@ class UserProfileViewController: UIViewController, UINavigationControllerDelegat
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        profilePicture.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectProfileImageView)))
-        // Do any additional setup after loading the view.
-        
         let tabCtrllr = self.tabBarController as! UserTabBarController
         user = tabCtrllr.user
         userID = tabCtrllr.userID
+        
+        name.text = "Name:  " + (user?.firstName)! + " " + (user?.lastName)!
+        date.text = "Date of Birth:  " +  (user?.dateOfBirth)!
+        if user?.userProfilePictureURL == "" {
+        profilePicture.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectProfileImageView)))
+        } else {
+            setUpImage()
+        }
+        // Do any additional setup after loading the view.
+        
+        
     }
 
   
     @IBAction func updatePicturePressed(_ sender: Any) {
+        if profilePicture.image != nil {
         user?.addProfilePicture(profilePicture, userID!)
-        
+            createAlert("Congratulations", "Profile updated successfully!")
+        } else {
+          createAlert("Warning", "Upload an Image!")
+        }
     }
     
     
-
+    func createAlert(_ title : String,_ message : String){
+        
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let OKAction = UIAlertAction(title: "OK", style: .default) { action in }
+        alertController.addAction(OKAction)
+        self.present(alertController, animated: true) {}
+    }
     
   
     
@@ -55,17 +75,6 @@ class UserProfileViewController: UIViewController, UINavigationControllerDelegat
         
         performSegue(withIdentifier: "toSignOut", sender: self)
     }
-   
-    
-    
-    //func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        
-     //   userImage = info[UIImagePickerControllerOriginalImage] as? UIImage
-      //  profilePicture.image = userImage
-       // picker.dismiss(animated: true, completion: nil)
-        
-        
-    //}
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
@@ -102,5 +111,30 @@ class UserProfileViewController: UIViewController, UINavigationControllerDelegat
         dismiss(animated: true, completion: nil)
     }
     
+    
+    func setUpImage() {
+        let session = URLSession(configuration: .default)
+        if let Userurl = user?.userProfilePictureURL {
+            let url = URL(string: Userurl)
+            //print(url)
+            let downloadPic = session.dataTask(with: url!, completionHandler: {
+                (data,response,error) in
+                
+                if error != nil {
+                    // print(error)
+                    return
+                }
+                if let imageData = data {
+                    //print(data!)
+                    let image = UIImage(data: imageData)
+                    DispatchQueue.main.async {
+                        self.profilePicture.image = image
+                    }
+                }
+            })
+            downloadPic.resume()
+            //spinner.stopAnimating()
+        }
+    }
 
 }

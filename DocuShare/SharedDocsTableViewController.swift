@@ -10,10 +10,20 @@ import UIKit
 import Firebase
 
 class SharedDocsTableViewController: UITableViewController {
-
+    
+    var user : User?
+    var userID : String?
+    var sharedList = [Document]()
+    var document : Document?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        let tabCtrllr = self.tabBarController as! UserTabBarController
+        user = tabCtrllr.user
+        userID = tabCtrllr.userID
+        print(userID!)
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -56,7 +66,10 @@ class SharedDocsTableViewController: UITableViewController {
         return cell
     }
     */
-
+    @IBAction func opeCamera(_ sender: Any) {
+        self.performSegue(withIdentifier: "camOpen", sender: self)
+    }
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -92,14 +105,17 @@ class SharedDocsTableViewController: UITableViewController {
     }
     */
 
-    /*
-    // MARK: - Navigation
+    //MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let camScanner = segue.destination as? ScannerViewController{
+            camScanner.userID = userID
+            camScanner.user = user
+        }
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
-    */
+
 
 }

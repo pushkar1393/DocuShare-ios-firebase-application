@@ -13,24 +13,36 @@ class MyDocsTableViewController: UITableViewController {
 
     var user : User?
     var userID : String?
+    var myList = [Document]()
+    var indexArray = [String]()
+    var document : Document?
     
     @IBAction func addDocumentPressed(_ sender: Any) {
         performSegue(withIdentifier: "toAddDocument", sender: self)
     }
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
         let tabCtrllr = self.tabBarController as! UserTabBarController
         user = tabCtrllr.user
         userID = tabCtrllr.userID
+        //print("\(userID ?? "lol")- in the doclist")
         
-
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+         retrieveList(userID!)
+        super.viewWillAppear(animated)
+       // self.tableView.reloadData()
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -53,23 +65,25 @@ class MyDocsTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return myList.count
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: "docCell", for: indexPath) as! DocumentTableViewCell
+        let document =  myList[indexPath.row]
+        let docID = indexArray[indexPath.row]
+        cell.documentID = docID
+        cell.documentName.text = document.documentName
+        cell.document = document
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.
@@ -109,11 +123,72 @@ class MyDocsTableViewController: UITableViewController {
   
 
  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if let addDoc = segue.destination as? AddDocumentViewController {
+        addDoc.user = user
+        addDoc.userID = userID
+    }
     
-    let addDocCtrl = AddDocumentViewController()
-    addDocCtrl.user = user
-    addDocCtrl.userID = userID
+    if let viewDocQR = segue.destination as? QRImageViewController {
+        viewDocQR.document = document
+    }
+    
+    if let viewDoc = segue.destination as? ViewDocumentViewController {
+        viewDoc.document = document
+    }
+}
+    
+    
+    func retrieveList(_ userID : String) {
+        myList.removeAll()
+        Database.database().reference().child("documentList").observe(.childAdded, with: {
+            (snapshot) in
+            print(snapshot.key)
+            if let docDictionary = snapshot.value as? [String : AnyObject]{
+                let val = docDictionary["userID"] as! String
+                if val == self.userID{
+                self.indexArray.append(snapshot.key)
+               let document = Document()
+                document.setValuesForKeys(docDictionary)
+                self.myList.append(document)
+                
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+                }
+            }
+        }, withCancel: nil)
     }
  
+    
+    
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let deleteItem = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
+            let cell = tableView.cellForRow(at: indexPath) as! DocumentTableViewCell
+            let documentID = cell.documentID
+            Database.database().reference().child("documentList").child(documentID!).removeValue()
+            self.retrieveList(self.userID!)
+            self.tableView.reloadData()
+            
+        }
+        
+        let qrItem = UITableViewRowAction(style: .normal, title: "QR") { (action, indexPath) in
+            let cell = tableView.cellForRow(at: indexPath) as! DocumentTableViewCell
+            let document = cell.document
+            self.document = document
+            self.performSegue(withIdentifier: "viewQRCode", sender: self)
+        }
+        
+        let viewItem = UITableViewRowAction(style: .normal, title: "View"){ (action,indexPath) in
+            let cell = tableView.cellForRow(at: indexPath) as! DocumentTableViewCell
+            self.document = cell.document
+            self.performSegue(withIdentifier: "toViewDoc", sender: self)
+        }
+        
+        
+        viewItem.backgroundColor = UIColor.init(red: 30/255, green: 30/255, blue: 180/255, alpha: 0.8)
+        deleteItem.backgroundColor = UIColor.init(red: 0/255, green: 0/255, blue: 180/255, alpha: 0.8)
+        qrItem.backgroundColor = UIColor.init(red: 60/255, green: 60/255, blue: 180/255, alpha: 0.8)
+        return [deleteItem,viewItem,qrItem]
+    }
 
 }

@@ -12,16 +12,16 @@ import Firebase
 class SignUpViewController: UIViewController {
     
     var userID : String?
-    
-    @IBOutlet weak var emailTextField: UITextField!
-    @IBOutlet weak var firstNameTextField: UITextField!
-    @IBOutlet weak var lastNameTextField: UITextField!
-    @IBOutlet weak var genderTextField: UITextField!
-    @IBOutlet weak var dateOfBirthTextField: UITextField!
-    @IBOutlet weak var passwordTextField: UITextField!
-    @IBOutlet weak var usernameTextField: UITextField!
 
+    @IBOutlet weak var usernameTextField: UITextField!
+    @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var dateOfBirthTextField: UITextField!
+    @IBOutlet weak var genderTextField: UITextField!
     
+    @IBOutlet weak var firstNameTextField: UITextField!
+    
+    @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var lastNameTextField: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
         genderPicker()
@@ -44,8 +44,12 @@ class SignUpViewController: UIViewController {
         passwordTextField.text=""
     }
     
-    @IBAction func signUpBtnPressed(_ sender: Any) {
+    @IBAction func btnSignUpPressed(_ sender: Any) {
         addUserAccountandLogin()
+    }
+
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
     
     // function to add authenticated user to firebase
@@ -53,11 +57,11 @@ class SignUpViewController: UIViewController {
         if checkIsValid()==1 {
         Auth.auth().createUser(withEmail: emailTextField.text!, password: passwordTextField.text!, completion: {
             (user,error) in
-            
+
             if error != nil {
                 self.createAlert("User not added","Something went wrong with the details!")
             } else {
-                
+
                 print(user!.uid)
                 self.userID = user!.uid
                 let ref = Database.database().reference(fromURL: "https://docushare-documents-on-the-go.firebaseio.com/")
@@ -69,7 +73,7 @@ class SignUpViewController: UIViewController {
                                                   "email": self.emailTextField.text!,
                                                   "userName": self.usernameTextField.text!,
                                                   "userProfilePictureURL" : ""])
-                
+
                 self.loginUser();
             }
         })
@@ -87,7 +91,7 @@ class SignUpViewController: UIViewController {
                 defaults.synchronize()
                 self.userID = user?.uid
                 self.performSegue(withIdentifier: "toUserProfileFromSignUp", sender: self)
-                
+
             } else {
                 self.createAlert("Invalid Credentials", "Please enter valid credentials")
             }
@@ -133,6 +137,7 @@ class SignUpViewController: UIViewController {
         toolBar.setItems([doneButton], animated: false)
         toolBar.isUserInteractionEnabled = true
         genderTextField.inputAccessoryView = toolBar
+        dateOfBirthTextField.inputAccessoryView = toolBar
     }
     
     
@@ -151,7 +156,25 @@ class SignUpViewController: UIViewController {
         
     }
     
+    //function to implement datepicker
+    
+    @IBAction func txtDateEdit(_ sender: Any) {
+        let datePickerView:UIDatePicker = UIDatePicker()
+        datePickerView.datePickerMode = UIDatePickerMode.date
+        dateOfBirthTextField.inputView = datePickerView
+        datePickerView.addTarget(self, action: #selector(SignUpViewController.datePickerValueChanged), for: UIControlEvents.valueChanged)
+    }
+    
+    func datePickerValueChanged(sender:UIDatePicker)
+    {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "mm/dd/yyyy"
+        dateOfBirthTextField.text = dateFormatter.string(from: sender.date)
+    }
+    
 }
+
+
 
 
 extension SignUpViewController : UIPickerViewDelegate, UIPickerViewDataSource {
