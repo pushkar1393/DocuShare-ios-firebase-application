@@ -20,21 +20,7 @@ class User : NSObject{
     var email : String?
     var userName : String?
     var userProfilePictureURL : String?
-    //var myDocumentStore : DocumentStoreList?
-    //var sharedDcoumentStore : DocumentStoreList?
     
-    
-    
-    //init(_ firstName : String, _ lastName : String, _ dateOfBirth : String, _ sex : String, _ email : String, _ userName : String) {
-   //     self.myDocumentStore = DocumentStoreList()
-     //   self.sharedDcoumentStore = DocumentStoreList()
-    //    self.firstName = firstName
-      //  self.lastName = lastName
-      //  self.dateOfBirth = dateOfBirth
-      //  self.sex = sex
-      //  self.email = email
-       // self.userName = userName
-    //}
     
 
 

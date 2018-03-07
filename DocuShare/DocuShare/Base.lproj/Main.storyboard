@@ -699,7 +699,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kz4-7Z-3HY">
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icons8-anonymous_mask_filled" translatesAutoresizingMaskIntoConstraints="NO" id="kz4-7Z-3HY">
                                 <rect key="frame" x="112.5" y="94" width="150" height="150"/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -869,11 +869,11 @@
             </objects>
             <point key="canvasLocation" x="-2871.1999999999998" y="-783.05847076461771"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--My Docs-->
         <scene sceneID="xzA-VP-NY0">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="BGW-Md-1cL" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="history" id="6xa-7E-04B" userLabel="My Docs"/>
+                    <tabBarItem key="tabBarItem" title="My Docs" image="icons8-documents_filled" id="6xa-7E-04B" userLabel="My Docs"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="HMh-Ub-Aa4">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -888,11 +888,11 @@
             </objects>
             <point key="canvasLocation" x="-1933" y="-1621"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Shared-->
         <scene sceneID="cSn-Lo-zkP">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Uu5-J8-gLw" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="mostRecent" id="Vph-wm-zwo" userLabel="Shared Docs"/>
+                    <tabBarItem key="tabBarItem" title="Shared" image="icons8-email_document_filled" id="Vph-wm-zwo" userLabel="Shared Docs"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="fGq-7E-mlr">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -907,11 +907,11 @@
             </objects>
             <point key="canvasLocation" x="-1933" y="44"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Me-->
         <scene sceneID="tBx-C7-8yf">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Gai-Fi-xAR" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="favorites" id="hbk-iZ-LPe" userLabel="Profile"/>
+                    <tabBarItem key="tabBarItem" title="Me" image="icons8-user_filled" id="hbk-iZ-LPe" userLabel="Profile"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="F7D-9b-EL3">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -947,7 +947,7 @@
                                             <constraint firstAttribute="height" constant="42" id="DC9-Nj-gNC"/>
                                         </constraints>
                                         <attributedString key="attributedText">
-                                            <fragment content="SIGN upp">
+                                            <fragment content="SIGN UP">
                                                 <attributes>
                                                     <font key="NSFont" size="31" name="Courier"/>
                                                     <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
@@ -984,6 +984,12 @@
             <point key="canvasLocation" x="-3658.4000000000001" y="-395.35232383808096"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="icons8-anonymous_mask_filled" width="100" height="100"/>
+        <image name="icons8-documents_filled" width="25" height="25"/>
+        <image name="icons8-email_document_filled" width="25" height="25"/>
+        <image name="icons8-user_filled" width="25" height="25"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="1VX-hS-Bw9"/>
         <segue reference="rrQ-qJ-uE3"/>
