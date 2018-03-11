@@ -8,6 +8,7 @@
 
 import UIKit
 import AVFoundation
+import Firebase
 
 class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
 
@@ -16,6 +17,7 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     var captureSession : AVCaptureSession?
     var videoPreviewLayer : AVCaptureVideoPreviewLayer?
     var qrCodeFrameView : UIView?
+    var document : Document?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -82,15 +84,20 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
             qrCodeFrameView?.frame = barCodeObject!.bounds
             
             if metadataObj.stringValue != nil {
-                var document = setDocumentValues(metadataObj.stringValue)
-                //if document.saveLock == "true" {
-                //createAlert("Cannot Save", document.documentURL!)
-                    let docViewCtrl =  storyboard?.instantiateViewController(withIdentifier: "popUpDoc") as! DocumentDisplayPopUpController
-                    docViewCtrl.document = document
-                    self.present(docViewCtrl, animated: true, completion: nil)
-               // } else {
-                    //createAlert("Save", document.documentURL!)
-              //  }
+                let asGroup = DispatchGroup()
+                asGroup.enter()
+                fetchDocument(metadataObj.stringValue!,asGroup)
+                asGroup.notify(queue: .main, execute: {
+                    if self.document == nil {
+                        self.createAlert("Broken Link", "Document not found.")
+                        return
+                    } else {
+                        
+                        let docViewCtrl =  self.storyboard?.instantiateViewController(withIdentifier: "popUpDoc") as! DocumentDisplayPopUpController
+                        docViewCtrl.document = self.document
+                        self.present(docViewCtrl, animated: true, completion: nil)
+                    }
+                })
             }
         }
     }
@@ -105,16 +112,6 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     }
     */
     
-    func setDocumentValues(_ unfilteredURL : String) -> Document{
-        var document = Document()
-        if unfilteredURL.contains("save="){
-            document.documentURL =  unfilteredURL.substring(from: unfilteredURL.index(of: "http")!)
-        }
-        var lock = unfilteredURL.substring(to: unfilteredURL.index(of: "http")!)
-        document.saveLock = lock.contains("t") ? "true" : "false"
-        return document
-    }
-
     
     func createAlert(_ title : String,_ message : String){
         
@@ -122,5 +119,19 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
         let OKAction = UIAlertAction(title: "OK", style: .default) { action in }
         alertController.addAction(OKAction)
         self.present(alertController, animated: true) {}
+    }
+    
+    func fetchDocument(_ docID : String,_ asGroup : DispatchGroup) {
+        print(docID)
+        
+        Database.database().reference(fromURL: "https://docushare-documents-on-the-go.firebaseio.com/").child("documentList").child(docID).observeSingleEvent(of: .value, with: {
+            (snapshot) in
+            if let dictionary = snapshot.value as? [String : AnyObject] {
+                print(dictionary)
+                self.document = Document()
+                self.document!.setValuesForKeys(dictionary)
+                asGroup.leave()
+            }
+        }, withCancel: nil)
     }
 }

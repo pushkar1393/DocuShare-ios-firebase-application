@@ -649,11 +649,15 @@
                                 <rect key="frame" x="66" y="269" width="243" height="258"/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </imageView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="OVz-ph-kl1">
+                                <rect key="frame" x="177" y="388" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="6x6-ij-h0G" firstAttribute="leading" secondItem="7Kl-VS-B10" secondAttribute="leadingMargin" constant="55" id="8dV-eM-tHq"/>
                             <constraint firstItem="QbF-Oa-FcK" firstAttribute="top" secondItem="crG-Fw-MgZ" secondAttribute="bottom" constant="100" id="DxW-B0-rMJ"/>
+                            <constraint firstItem="OVz-ph-kl1" firstAttribute="leading" secondItem="7Kl-VS-B10" secondAttribute="leadingMargin" constant="161" id="KNE-8A-hFW"/>
                             <constraint firstItem="Ogg-cZ-uLl" firstAttribute="leading" secondItem="7Kl-VS-B10" secondAttribute="leadingMargin" constant="30" id="OTu-o3-Po0"/>
                             <constraint firstItem="lE8-U3-89q" firstAttribute="top" secondItem="QbF-Oa-FcK" secondAttribute="bottom" constant="25" id="RkN-pI-MZj"/>
                             <constraint firstItem="bHy-VA-Gir" firstAttribute="top" secondItem="Ogg-cZ-uLl" secondAttribute="bottom" constant="15" id="UeK-ql-OvH"/>
@@ -666,7 +670,9 @@
                             <constraint firstAttribute="trailingMargin" secondItem="QbF-Oa-FcK" secondAttribute="trailing" constant="30" id="gAo-2g-BD3"/>
                             <constraint firstItem="kS7-hw-k5I" firstAttribute="leading" secondItem="6x6-ij-h0G" secondAttribute="trailing" constant="8" id="gZy-hW-4Hs"/>
                             <constraint firstItem="6x6-ij-h0G" firstAttribute="firstBaseline" secondItem="kS7-hw-k5I" secondAttribute="baseline" id="lSQ-lc-Fvz"/>
+                            <constraint firstItem="6x6-ij-h0G" firstAttribute="top" secondItem="OVz-ph-kl1" secondAttribute="bottom" constant="127" id="mVA-Gv-4PM"/>
                             <constraint firstItem="6x6-ij-h0G" firstAttribute="top" secondItem="kS7-hw-k5I" secondAttribute="top" id="pXT-c8-VDo"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="OVz-ph-kl1" secondAttribute="trailing" constant="162" id="r2Y-Wr-WYs"/>
                             <constraint firstItem="QbF-Oa-FcK" firstAttribute="leading" secondItem="7Kl-VS-B10" secondAttribute="leadingMargin" constant="30" id="sL1-fV-3e5"/>
                             <constraint firstItem="Ogg-cZ-uLl" firstAttribute="top" secondItem="QbF-Oa-FcK" secondAttribute="bottom" constant="20" id="uXI-AI-Rm4"/>
                             <constraint firstAttribute="trailingMargin" secondItem="kS7-hw-k5I" secondAttribute="trailing" constant="55" id="yed-XU-uEh"/>
@@ -677,6 +683,7 @@
                         <outlet property="docDisplay" destination="bHy-VA-Gir" id="ydL-KQ-FNz"/>
                         <outlet property="documentNameTextField" destination="QbF-Oa-FcK" id="FTm-Kx-puh"/>
                         <outlet property="saveLockSwitch" destination="lE8-U3-89q" id="YO4-oF-H71"/>
+                        <outlet property="spinner" destination="OVz-ph-kl1" id="IJi-Jz-QiS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hJp-2Q-eb3" userLabel="First Responder" sceneMemberID="firstResponder"/>

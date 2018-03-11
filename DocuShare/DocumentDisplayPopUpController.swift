@@ -21,6 +21,7 @@ class DocumentDisplayPopUpController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        spinner!.hidesWhenStopped = true
         spinner!.startAnimating()
         setUpImage()
         // Do any additional setup after loading the view.
@@ -47,15 +48,14 @@ class DocumentDisplayPopUpController: UIViewController {
                     return
                 }
                 if let imageData = data {
-                    //print(data!)
                     let image = UIImage(data: imageData)
                     DispatchQueue.main.async {
                         self.documentView.image = image
+                        self.spinner!.stopAnimating()
                     }
                 }
             })
             downloadPic.resume()
-            //spinner.stopAnimating()
         }
     }
     

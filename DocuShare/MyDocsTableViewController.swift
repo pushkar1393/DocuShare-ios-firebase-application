@@ -16,6 +16,7 @@ class MyDocsTableViewController: UITableViewController {
     var myList = [Document]()
     var indexArray = [String]()
     var document : Document?
+    var docID : String?
     
     @IBAction func addDocumentPressed(_ sender: Any) {
         performSegue(withIdentifier: "toAddDocument", sender: self)
@@ -28,7 +29,6 @@ class MyDocsTableViewController: UITableViewController {
         let tabCtrllr = self.tabBarController as! UserTabBarController
         user = tabCtrllr.user
         userID = tabCtrllr.userID
-        //print("\(userID ?? "lol")- in the doclist")
         
         
         // Uncomment the following line to preserve selection between presentations
@@ -130,6 +130,7 @@ class MyDocsTableViewController: UITableViewController {
     
     if let viewDocQR = segue.destination as? QRImageViewController {
         viewDocQR.document = document
+        viewDocQR.docID = docID
     }
     
     if let viewDoc = segue.destination as? ViewDocumentViewController {
@@ -142,7 +143,6 @@ class MyDocsTableViewController: UITableViewController {
         myList.removeAll()
         Database.database().reference().child("documentList").observe(.childAdded, with: {
             (snapshot) in
-            print(snapshot.key)
             if let docDictionary = snapshot.value as? [String : AnyObject]{
                 let val = docDictionary["userID"] as! String
                 if val == self.userID{
@@ -175,6 +175,9 @@ class MyDocsTableViewController: UITableViewController {
             let cell = tableView.cellForRow(at: indexPath) as! DocumentTableViewCell
             let document = cell.document
             self.document = document
+            let docid = cell.documentID
+            self.docID = docid
+            
             self.performSegue(withIdentifier: "viewQRCode", sender: self)
         }
         

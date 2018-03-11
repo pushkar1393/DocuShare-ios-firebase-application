@@ -145,7 +145,7 @@ class SignUpViewController: UIViewController {
     func dismissKeyboard() {
         view.endEditing(true)
     }
-    
+
     
     //to  setup object for next controller
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){

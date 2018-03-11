@@ -25,7 +25,7 @@ class User : NSObject{
 
 
     func addProfilePicture(_ userProfilePicture : UIImageView,_ uid : String) -> String {
-        var returnURL = ""
+        let returnURL = ""
         
         let ref_root = Storage.storage().reference(forURL: "gs://docushare-documents-on-the-go.appspot.com/")
         let profile_picture_store = ref_root.child("profile_pic_store").child(uid + "_profile_pic.jpg")
@@ -36,7 +36,7 @@ class User : NSObject{
                 (metadata,error) in
                 
                 if error != nil {
-                    print(error)
+                    print(error!)
                     return
                 }
                 

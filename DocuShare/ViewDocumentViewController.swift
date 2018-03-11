@@ -21,6 +21,7 @@ class ViewDocumentViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        spinner.hidesWhenStopped = true
         spinner!.startAnimating()
         fetchDoc()
         
@@ -39,7 +40,6 @@ class ViewDocumentViewController: UIViewController {
         let session = URLSession(configuration: .default)
         if let docURL = document?.documentURL?.substring(from: (document?.documentURL?.index(of: "http"))!) {
             let url = URL(string: docURL)
-            //print(url)
             let downloadPic = session.dataTask(with: url!, completionHandler: {
                 (data,response,error) in
                 
@@ -48,15 +48,15 @@ class ViewDocumentViewController: UIViewController {
                     return
                 }
                 if let imageData = data {
-                    //print(data!)
                     let image = UIImage(data: imageData)
                     DispatchQueue.main.async {
                         self.docView.image = image
+                        self.spinner!.stopAnimating()
                     }
                 }
             })
             downloadPic.resume()
-            spinner!.stopAnimating()
+            
         }
         
     }

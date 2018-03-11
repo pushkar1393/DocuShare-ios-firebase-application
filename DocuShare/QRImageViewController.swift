@@ -12,6 +12,7 @@ class QRImageViewController: UIViewController {
 
     var document : Document?
     var qrCodeImage : CIImage!
+    var docID : String?
     
     @IBOutlet weak var slider: UISlider!
     @IBOutlet weak var QRImageView: UIImageView!
@@ -35,14 +36,13 @@ class QRImageViewController: UIViewController {
     func generateQRfromURL() {
         if qrCodeImage == nil {
             
-            let data = document!.documentURL?.data(using: String.Encoding.isoLatin1, allowLossyConversion: false)
+            let data = docID!.data(using: String.Encoding.isoLatin1, allowLossyConversion: false)
     
          let filter = CIFilter(name: "CIQRCodeGenerator")
         filter?.setValue(data, forKey: "inputMessage")
         filter?.setValue("Q", forKey: "inputCorrectionLevel")
             
             qrCodeImage = filter?.outputImage
-            //QRImageView.image = UIImage(ciImage: qrCodeImage)
             blurFixQRCode()
         }
     }

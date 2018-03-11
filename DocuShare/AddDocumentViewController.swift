@@ -20,12 +20,13 @@ class AddDocumentViewController: UIViewController,  UINavigationControllerDelega
     var userID : String?
     var documentUploaded : UIImage?
    
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
     
     @IBOutlet weak var docDisplay: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(userID!)
+        spinner.hidesWhenStopped = true
     }
 
     override func didReceiveMemoryWarning() {
@@ -40,6 +41,7 @@ class AddDocumentViewController: UIViewController,  UINavigationControllerDelega
 
     
     @IBAction func uploadButtonPressed(_ sender: Any) {
+        
         createDocumentAndStore()
     }
     
@@ -95,10 +97,8 @@ class AddDocumentViewController: UIViewController,  UINavigationControllerDelega
     func createDocumentAndStore() {
         
         if checkIsValid() == 1 {
-            print(Date())
-
+            blurScreen()
             let date = String(describing: Date())
-            print(date)
             
             let ref_root = Storage.storage().reference(forURL: "gs://docushare-documents-on-the-go.appspot.com/")
             let document_store = ref_root.child("document_store").child(date + "_user_" + userID! + "_scan.jpg")
@@ -107,18 +107,17 @@ class AddDocumentViewController: UIViewController,  UINavigationControllerDelega
                     (metadata,error) in
 
                     if error != nil {
-                        print(error)
+                        print(error!)
                         return
                     }
                     
-                    if var docURL = metadata?.downloadURL()?.absoluteString {
-                       var val = self.saveLockSwitch.isOn ? "true" : "false"
-                        docURL = "save=" + val + docURL
-                        print(docURL)
+                    if let docURL = metadata?.downloadURL()?.absoluteString {
                         let values = ["documentName" : self.documentNameTextField.text!, "uploadedOn" :date, "saveLock" : self.saveLockSwitch.isOn ? "true" : "false", "documentURL" : docURL, "userID" : self.userID!] as [String : AnyObject]
                         
-                        
-                        self.storeDocumentToDB(values)
+                        DispatchQueue.main.async {
+                             self.storeDocumentToDB(values)
+                        }
+                       self.dismiss(animated: false, completion: nil)
                         self.createAlert("Congratulations!", "Document uploaded successfully!")
                         self.resetDoc()
                     }
@@ -156,6 +155,13 @@ class AddDocumentViewController: UIViewController,  UINavigationControllerDelega
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
+    }
+    
+    func blurScreen(){
+        spinner!.startAnimating()
+        let alert = UIAlertController(title: nil, message: "Please wait...", preferredStyle: .alert)
+        alert.view.addSubview(spinner)
+        present(alert, animated: true, completion: nil)
     }
 
 }
